@@ -1,0 +1,15 @@
+app:
+  name: test-netzme-api
+  key: passphrasewhichneedstobe32bytes!
+  port: 3000
+  host: localhost:3000
+  version: 0.0.1
+swagger:
+  swaggerhost: localhost:3000
+  swaggerscheme: http
+  swaggerprefix:
+repository:
+  api:
+    user: 
+      url: https://randomuser.me/api/
+ 

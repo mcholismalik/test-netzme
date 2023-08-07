@@ -1,0 +1,96 @@
+basePath: /
+definitions:
+  abstraction.PaginationInfo:
+    properties:
+      count:
+        type: integer
+      more_records:
+        type: boolean
+      page:
+        type: integer
+      page_size:
+        type: integer
+      total_page:
+        type: integer
+    type: object
+  dto.UserResponse:
+    properties:
+      address:
+        type: string
+      fullname:
+        type: string
+      gender:
+        type: string
+      picture:
+        type: string
+    type: object
+  dto.UserResponseDoc:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/dto.UserResponse'
+            type: object
+          meta:
+            $ref: '#/definitions/response.Meta'
+            type: object
+        type: object
+    type: object
+  response.Meta:
+    properties:
+      code:
+        type: string
+      info:
+        $ref: '#/definitions/abstraction.PaginationInfo'
+        type: object
+      message:
+        default: "true"
+        type: string
+      success:
+        default: true
+        type: boolean
+    type: object
+  response.errorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        $ref: '#/definitions/response.Meta'
+        type: object
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a doc for test-netzme.
+  license: {}
+  title: test-netzme
+  version: 0.0.1
+paths:
+  /api/person:
+    get:
+      consumes:
+      - application/json
+      description: Get user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.errorResponse'
+      summary: Get user
+      tags:
+      - user
+swagger: "2.0"
